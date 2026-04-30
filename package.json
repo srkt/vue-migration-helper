@@ -1,35 +1,26 @@
 {
   "name": "vue-migration-helper",
   "displayName": "Vue Migration Helper",
-  "description": "Incremental Vue 2 Class → Vue 3 Composition API Migration",
+  "description": "Selective / Incremental Vue 2 Class → Vue 3 Composition API",
   "version": "0.1.0",
   "publisher": "yourname",
-  "engines": {
-    "vscode": "^1.85.0"
-  },
+  "engines": { "vscode": "^1.85.0" },
   "categories": ["Other"],
   "activationEvents": ["onLanguage:vue"],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      { "command": "vue-migrate.convertFull", "title": "Vue Migrate: Convert Whole Class Component" },
-      { "command": "vue-migrate.convertProps", "title": "Vue Migrate: Convert Props" },
-      { "command": "vue-migrate.convertEmits", "title": "Vue Migrate: Convert Emits" },
-      { "command": "vue-migrate.convertComputed", "title": "Vue Migrate: Convert Computed" },
-      { "command": "vue-migrate.convertWatch", "title": "Vue Migrate: Convert Watchers" },
-      { "command": "vue-migrate.convertMethod", "title": "Vue Migrate: Convert Selected Method" },
-      { "command": "vue-migrate.convertLifecycle", "title": "Vue Migrate: Convert Lifecycle Hooks" },
-      { "command": "vue-migrate.convertRefs", "title": "Vue Migrate: Convert @Ref" },
-      { "command": "vue-migrate.convertVuex", "title": "Vue Migrate: Convert Vuex Decorators" }
-    ],
-    "menus": {
-      "editor/context": [
-        { "command": "vue-migrate.convertFull", "when": "resourceLangId == vue" }
-      ]
-    }
+      { "command": "vue-migrate.props", "title": "Migrate: Props (@Prop / @Model / @PropSync)" },
+      { "command": "vue-migrate.emits", "title": "Migrate: Emits (@Emit / $emit)" },
+      { "command": "vue-migrate.computed", "title": "Migrate: Computed Properties" },
+      { "command": "vue-migrate.watch", "title": "Migrate: Watchers (@Watch)" },
+      { "command": "vue-migrate.method", "title": "Migrate: Selected Method" },
+      { "command": "vue-migrate.lifecycle", "title": "Migrate: Lifecycle Hooks" },
+      { "command": "vue-migrate.refs", "title": "Migrate: @Ref" },
+      { "command": "vue-migrate.vuex", "title": "Migrate: Vuex Decorators" }
+    ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
   },
