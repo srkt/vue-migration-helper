@@ -4,20 +4,170 @@
   "description": "Selective / Incremental Vue 2 Class → Vue 3 Composition API",
   "version": "0.1.0",
   "publisher": "yourname",
-  "engines": { "vscode": "^1.85.0" },
-  "categories": ["Other"],
-  "activationEvents": ["onLanguage:vue"],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onLanguage:vue"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      { "command": "vue-migrate.props", "title": "Migrate: Props (@Prop / @Model / @PropSync)" },
-      { "command": "vue-migrate.emits", "title": "Migrate: Emits (@Emit / $emit)" },
-      { "command": "vue-migrate.computed", "title": "Migrate: Computed Properties" },
-      { "command": "vue-migrate.watch", "title": "Migrate: Watchers (@Watch)" },
-      { "command": "vue-migrate.method", "title": "Migrate: Selected Method" },
-      { "command": "vue-migrate.lifecycle", "title": "Migrate: Lifecycle Hooks" },
-      { "command": "vue-migrate.refs", "title": "Migrate: @Ref" },
-      { "command": "vue-migrate.vuex", "title": "Migrate: Vuex Decorators" }
+      {
+        "command": "vue-migrate.showMenu",
+        "title": "Vue Migration: Show Options..."
+      },
+      {
+        "command": "vue-migrate.convertComponent",
+        "title": "Migrate: @Component → defineOptions"
+      },
+      {
+        "command": "vue-migrate.convertComputed",
+        "title": "Migrate: Computed Properties"
+      },
+      {
+        "command": "vue-migrate.convertDataFields",
+        "title": "Migrate: Class Data Fields (ref/reactive)"
+      },
+      {
+        "command": "vue-migrate.convertEmitDecorator",
+        "title": "Migrate: Emit Decorators (@Emit)"
+      },
+      {
+        "command": "vue-migrate.convertEmits",
+        "title": "Migrate: Emits"
+      },
+      {
+        "command": "vue-migrate.convertFull",
+        "title": "Migrate: Full Class to Composition"
+      },
+      {
+        "command": "vue-migrate.convertLifecycle",
+        "title": "Migrate: Lifecycle Hooks"
+      },
+      {
+        "command": "vue-migrate.convertMethod",
+        "title": "Migrate: Selected Method"
+      },
+      {
+        "command": "vue-migrate.convertModel",
+        "title": "Migrate: Model (@Model → defineModel)"
+      },
+      {
+        "command": "vue-migrate.convertProps",
+        "title": "Migrate: Props (@Prop)"
+      },
+      {
+        "command": "vue-migrate.convertPropSync",
+        "title": "Migrate: PropSync (@PropSync → defineModel)"
+      },
+      {
+        "command": "vue-migrate.convertRefs",
+        "title": "Migrate: Template Refs (@Ref)"
+      },
+      {
+        "command": "vue-migrate.convertVuex",
+        "title": "Migrate: Vuex Decorators"
+      },
+      {
+        "command": "vue-migrate.convertWatch",
+        "title": "Migrate: Watchers (@Watch)"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "vue-migrate.submenu",
+        "label": "Vue Migration Helper"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vue-migrate.showMenu",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "when": "editorTextFocus && resourceLangId == vue"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "vue-migrate.submenu",
+          "when": "resourceLangId == vue",
+          "group": "1_modification"
+        }
+      ],
+      "vue-migrate.submenu": [
+        {
+          "command": "vue-migrate.showMenu",
+          "group": "0_main"
+        },
+        {
+          "command": "vue-migrate.convertFull",
+          "group": "1_full"
+        },
+        {
+          "command": "vue-migrate.convertComponent",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertComputed",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertDataFields",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertEmitDecorator",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertEmits",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertLifecycle",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertMethod",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertModel",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertProps",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertPropSync",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertRefs",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertVuex",
+          "group": "2_parts"
+        },
+        {
+          "command": "vue-migrate.convertWatch",
+          "group": "2_parts"
+        }
+      ]
+    },
+    "codeActions": [
+      {
+        "languages": [
+          "vue"
+        ],
+        "kinds": [
+          "refactor.rewrite"
+        ]
+      }
     ]
   },
   "scripts": {
